@@ -1,7 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Replace these with your actual keys from Supabase Dashboard -> Settings -> API
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || "YOUR_SUPABASE_PROJECT_URL";
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "YOUR_SUPABASE_ANON_KEY";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error("Supabase credentials missing! Check your .env.local file at the project root.");
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
